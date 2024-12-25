@@ -41,12 +41,12 @@ jobs:
             -p 8080:8080 \
             -e OPENAI_KEY=${{ secrets.OPENAI_KEY }} \
             ${{ secrets.DOCKER_USERNAME }}/fastapi-webapp:latest
-          sleep 30  # Allow the container to start
+          sleep 10  # Allow the container to start
 
       # Step 6: Test the FastAPI application
       - name: Test FastAPI application
         run: |
-          curl -f http://localhost:8080 || exit 1
+          curl -f http://localhost:8080/health || exit 1  # Point to a health check endpoint
 
       # Step 7: Stop and remove Docker container
       - name: Stop and remove Docker container
