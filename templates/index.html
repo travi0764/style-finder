@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Style Finder - Find Similar Garments</title>
+     <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon"> <!-- Add favicon -->
+     <link rel="stylesheet" href="../static/css/styles.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+ </head>
+ <body>
+     <header class="header">
+         <div class="container">
+             <div class="logo">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shopping-bag">
+                     <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                     <path d="M3 6h18"></path>
+                     <path d="M16 10a4 4 0 0 1-8 0"></path>
+                 </svg>
+                 <h1>Style Finder</h1>
+             </div>
+         </div>
+     </header>
+ 
+     <main class="container">
+         <div class="upload-section">
+             <form id="uploadForm" class="upload-form">
+                 <div class="form-grid">
+                     <div class="image-upload-container">
+                         <div id="dropZone" class="drop-zone">
+                             <div class="drop-zone-content">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon">
+                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                     <polyline points="17 8 12 3 7 8"></polyline>
+                                     <line x1="12" y1="3" x2="12" y2="15"></line>
+                                 </svg>
+                                 <p>Drag & drop your image here or <span class="browse-text">browse</span></p>
+                                 <input type="file" id="fileInput" accept="image/*" hidden>
+                             </div>
+                             <img id="imagePreview" class="image-preview" src="" alt="" hidden>
+                         </div>
+                     </div>
+ 
+                     <div class="form-inputs">
+                         <div class="input-group">
+                             <label for="garmentType">Garment Type</label>
+                             <input type="text" id="garmentType" placeholder="e.g., Dress, Shirt, Pants" required>
+                         </div>
+ 
+                         <div class="input-group">
+                             <label for="garmentLayer">Specific Layer</label>
+                             <input type="text" id="garmentLayer" placeholder="e.g., Top Layer, Base Layer" required>
+                         </div>
+ 
+                         <button type="submit" id="searchButton" class="search-button" disabled>
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                                 <circle cx="11" cy="11" r="8"></circle>
+                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                             </svg>
+                             <span>Search Similar Items</span>
+                         </button>
+                     </div>
+                 </div>
+             </form>
+         </div>
+ 
+         <div id="resultsSection" class="results-section" hidden>
+             <h2>Similar Items Found</h2>
+             <div id="resultsGrid" class="results-grid"></div>
+         </div>
+ 
+         <div id="loader" class="loader">
+             <div class="spinner"></div>
+             <p>Searching for similar items...</p>
+         </div>
+         
+         
+     </main>
+ 
+     <script src="../static/js/imageUpload.js"></script>
+     <script src="../static/js/api.js"></script>
+     <script src="../static/js/results.js"></script>
+     <script src="../static/js/app.js"></script>
+ </body>
+ </html>
+ 
+

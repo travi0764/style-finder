@@ -1,0 +1,60 @@
+name: Build, Test, and Push Docker Image with Secrets
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Step 3: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Step 4: Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/fastapi-webapp:latest .
+
+      # Step 5: Run the Docker container with secrets
+      - name: Run Docker container
+        run: |
+          docker run -d \
+            --name fastapi-webapp \
+            -p 8080:8080 \
+            -e OPENAI_KEY=${{ secrets.OPENAI_KEY }} \
+            ${{ secrets.DOCKER_USERNAME }}/fastapi-webapp:latest
+          sleep 30  # Allow the container to start
+
+      # Step 6: Test the FastAPI application
+      - name: Test FastAPI application
+        run: |
+          curl -f http://localhost:8080 || exit 1
+
+      # Step 7: Stop and remove Docker container
+      - name: Stop and remove Docker container
+        run: |
+          docker stop fastapi-webapp
+          docker rm fastapi-webapp
+
+      # Step 8: Push the Docker image to Docker Hub
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/fastapi-webapp:latest
