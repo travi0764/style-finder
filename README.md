@@ -138,13 +138,19 @@ This project includes code for scraping publicly available data from Google and 
 
 <!-- For production applications, we recommend using official APIs (e.g., [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/introduction) or [Amazon Product Advertising API](https://webservices.amazon.com/)) to ensure compliance with platform policies. -->
 
+## Image Similarity Search Experiments 
+### Experiment Repository
+
+For detailed experiments and additional code related to image similarity search, please refer to the following repository:
+
+- [Image Similarity Search Experiments](https://github.com/travi0764/Image-Similarity-Search-Experiments)
+
 
 ## Contact
 
 For questions or feedback, feel free to reach out:
-- **Email**: travi0764@gmail.com
-- **GitHub**: [travi0764](https://github.com/*travi0764)
-
+- **Ravi Tiwari** – [LinkedIn](https://www.linkedin.com/in/travi0764/) | [GitHub](https://github.com/travi0764)  
+- For any inquiries, please create an issue or reach out via email at `travi0764@gmail.com`.
 ---
 
-Thank you for using Style Finder!
+*Thank you for using Style Finder!*
